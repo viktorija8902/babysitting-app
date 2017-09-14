@@ -8,7 +8,7 @@ class UserController < ApplicationController
   		@user = Family.new(user_params)
   	end
     if @user.save
-    	render 'login_page'
+    	redirect_to '/login'
     else
       render 'registration_form'
     end
