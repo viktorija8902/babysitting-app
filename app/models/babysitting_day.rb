@@ -1,0 +1,2 @@
+class BabysittingDay < ApplicationRecord
+end
