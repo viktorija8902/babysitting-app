@@ -1,0 +1,31 @@
+h1>Registration form</h1>
+
+<%= form_with scope: :user, url: { controller: "user", action: "create" }, local: true do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+  </p>
+
+  <p>
+  	<%= form.label :password %>
+    <%= form.password_field :password %>
+
+    <%= form.label :password_confirmation, "Confirmation" %>
+    <%= form.password_field :password_confirmation %>
+  </p>
+
+  <p>
+	<%= form.label :user_type, "user_type" %>
+	<%= form.radio_button :user_type, 1, checked: true %> Babysitter
+	<%= form.radio_button :user_type, 2 %> Family
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
