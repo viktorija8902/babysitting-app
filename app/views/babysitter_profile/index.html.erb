@@ -1,24 +1,28 @@
-<h1>Hello babysitter <%= current_user.name %>!</h1>
+<% if logged_in? %>
+	<h1>Hello babysitter <%= current_user.name %>!</h1>
+	<%= link_to "Log out", logout_path, method: :delete %>
 
-<div>When can you babysit?<div>
+	<div>When can you babysit?<div>
+	<div class="row">
+	    <div class="col-md-6 col-md-offset-3">
+			<% @all_babysitting_days.each do |babysitting_day|  %>
+				<div>
+					<%= form_with url: { controller: "babysitter_profile", action: "create" }, local: true, remote: true do |form| %>
+						<%= radio_button_tag(:babysitting_day, babysitting_day.id) %>
+						<%= label_tag(:babysitting_day, babysitting_day.day) %>
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-		<% @all_babysitting_days.each do |babysitting_day|  %>
-			<div>
-				<%= form_with url: { controller: "babysitter_profile", action: "create" }, local: true, remote: true do |form| %>
-					<%= radio_button_tag(:babysitting_day, babysitting_day.id) %>
-					<%= label_tag(:babysitting_day, babysitting_day.day) %>
-
-					<div>
-						<% @all_babysitting_times.each do |babysitting_time|  %>
-							<%= check_box_tag('babysitting_time[]', babysitting_time.id) %>
-							<%= label_tag('babysitting_time[]', babysitting_time.start_time + babysitting_time.end_time) %>
-						<% end %>
-					</div>
-					<%= form.submit "Save", class: "btn btn-primary" %>
-				<% end %>
-			</div>
-		<% end %>
-    </div>
-</div>
+						<div>
+							<% @all_babysitting_times.each do |babysitting_time|  %>
+								<%= check_box_tag('babysitting_time[]', babysitting_time.id) %>
+								<%= label_tag('babysitting_time[]', babysitting_time.start_time + babysitting_time.end_time) %>
+							<% end %>
+						</div>
+						<%= form.submit "Save", class: "btn btn-primary" %>
+					<% end %>
+				</div>
+			<% end %>
+	    </div>
+	</div>
+<% else %>
+  <li><%= link_to "Log in", login_path %></li>
+<% end %>
