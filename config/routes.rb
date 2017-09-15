@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'family-profile', to: 'family_profile#index'
   get 'babysitter-profile', to: 'babysitter_profile#index'
-
+  post 'babysitter-profile', to: 'babysitter_profile#create'
+  
   get 'sessions/new'
 
   get 'register', to: 'user#index'

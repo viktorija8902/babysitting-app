@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914202810) do
+ActiveRecord::Schema.define(version: 20170915111011) do
 
   create_table "babysitters", force: :cascade do |t|
     t.string "name"
@@ -20,12 +20,34 @@ ActiveRecord::Schema.define(version: 20170914202810) do
     t.string "password_digest"
   end
 
+  create_table "babysitting_days", force: :cascade do |t|
+    t.string "day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "babysitting_times", force: :cascade do |t|
+    t.string "start_time"
+    t.string "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "families", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+  end
+
+  create_table "selected_babysitting_times", force: :cascade do |t|
+    t.integer "babysitting_day_id"
+    t.integer "babysitting_time_id"
+    t.integer "babysitter_id"
+    t.integer "family_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
