@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  babysitting_day_id: 1
+  babysitting_time_id: 1
+  babysitter_id: 1
+  family_id: 1
+
+two:
+  babysitting_day_id: 1
+  babysitting_time_id: 1
+  babysitter_id: 1
+  family_id: 1
