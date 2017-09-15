@@ -1,4 +1,6 @@
 class Babysitter < ApplicationRecord
+	has_many :selected_babysitting_times
+
 	before_save { self.email = email.downcase }
 	
 	validates :name, presence: true

@@ -1,4 +1,7 @@
 class SelectedBabysittingTime < ApplicationRecord
+	belongs_to :babysitter
+	belongs_to :babysitting_day
+	belongs_to :babysitting_time
 
 	def self.update_available_times(params, babysitter_id)
 	  	babysitting_day = params.dig('babysitting_day')
@@ -23,4 +26,11 @@ class SelectedBabysittingTime < ApplicationRecord
 	  		)
 	  	end
   	end
+
+  	def self.schedule_babysitting_time(params, family_id)
+  		babysitting_time_id = params.dig('booked_babysitting_time').to_i
+  		babysitting_time = SelectedBabysittingTime.find(babysitting_time_id)
+  		babysitting_time.family_id = family_id
+  		babysitting_time.save
+  	end	
 end
