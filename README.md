@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run the application:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. install Ruby, sqlite3, Ruby on Rails
+2. clone this repository and go to its folder
+3. install dependencies: bundle install
+4. run migrations: bin/rails db:migrate
+5. add times and days to the db: bin/rails db:seed
+6. run the server: bin/rails server
+7. go to /register to register
