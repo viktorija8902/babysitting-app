@@ -32,5 +32,10 @@ class SelectedBabysittingTime < ApplicationRecord
   		babysitting_time = SelectedBabysittingTime.find(babysitting_time_id)
   		babysitting_time.family_id = family_id
   		babysitting_time.save
-  	end	
+  	end
+
+  	def self.get_available_babysitting_times
+  		available_babysitting_times = SelectedBabysittingTime.where('family_id': nil).joins(:babysitter, :babysitting_time, :babysitting_day)
+  									.select('id', 'name', 'day', 'start_time', 'end_time')
+  	end
 end
