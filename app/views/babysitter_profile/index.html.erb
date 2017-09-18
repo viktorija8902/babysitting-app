@@ -14,7 +14,7 @@
 						<div>
 							<% @all_babysitting_times.each do |babysitting_time|  %>
 								<%= check_box_tag('babysitting_time[]', babysitting_time.id) %>
-								<%= label_tag('babysitting_time[]', babysitting_time.start_time + babysitting_time.end_time) %>
+								<%= label_tag('babysitting_time[]', babysitting_time.start_time + '-' + babysitting_time.end_time) %>
 							<% end %>
 						</div>
 						<%= form.submit "Save", class: "btn btn-primary" %>
