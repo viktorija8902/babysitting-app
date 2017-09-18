@@ -9,9 +9,9 @@
 				<% @available_babysitting_times.each do |available_babysitting_time|  %>
 					<div>
 						<%= radio_button_tag(:booked_babysitting_time, available_babysitting_time.id) %>
-						<%= label_tag(:booked_babysitting_time, available_babysitting_time.name +
-																available_babysitting_time.day +
-																available_babysitting_time.start_time +
+						<%= label_tag(:booked_babysitting_time, available_babysitting_time.name + ' ' +
+																available_babysitting_time.day + ' ' +
+																available_babysitting_time.start_time + '-' +
 																available_babysitting_time.end_time) %>
 					</div>
 				<% end %>
