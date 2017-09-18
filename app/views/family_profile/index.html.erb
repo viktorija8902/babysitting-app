@@ -5,16 +5,17 @@
 	<div>Choose your babysitter and babysitting time:<div>
 	<div class="row">
 	    <div class="col-md-6 col-md-offset-3">
-			<% @available_babysitting_times.each do |available_babysitting_time|  %>
-				<%= form_with url: { controller: "family_profile", action: "create" }, local: true do |form| %>
-					<%= radio_button_tag(:booked_babysitting_time, available_babysitting_time.id) %>
-					<%= label_tag(:booked_babysitting_time, available_babysitting_time.name +
-															available_babysitting_time.day +
-															available_babysitting_time.start_time +
-															available_babysitting_time.end_time) %>
-
-					<%= form.submit "Save", class: "btn btn-primary" %>
+	    	<%= form_with url: { controller: "family_profile", action: "create" }, local: true do |form| %>
+				<% @available_babysitting_times.each do |available_babysitting_time|  %>
+					<div>
+						<%= radio_button_tag(:booked_babysitting_time, available_babysitting_time.id) %>
+						<%= label_tag(:booked_babysitting_time, available_babysitting_time.name +
+																available_babysitting_time.day +
+																available_babysitting_time.start_time +
+																available_babysitting_time.end_time) %>
+					</div>
 				<% end %>
+				<%= form.submit "Save", class: "btn btn-primary" %>
 			<% end %>
 	    </div>
 	</div>
