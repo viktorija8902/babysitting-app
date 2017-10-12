@@ -1,16 +1,20 @@
 class UserController < ApplicationController
 
   def create
-  	user_type = params.dig('user', 'user_type')
-  	if user_type == '1'
-  		@user = Babysitter.new(user_params)
-  	elsif (user_type == '2')
-  		@user = Family.new(user_params)
-  	end
+    @user = User.new(login_params)
     if @user.save
-    	redirect_to '/login'
-    else
-      render 'registration_form'
+      @user = User.find_by(email: login_params[:email])
+      user_type = @user[:user_type]
+    	if user_type == '1'
+        user_profile =  Babysitter.new(additional_params)
+    	elsif (user_type == '2')
+        user_profile =  Family.new(additional_params)
+    	end
+      if user_profile.save
+      	redirect_to '/login'
+      else
+        render 'registration_form'
+      end
     end
   end
 
@@ -19,8 +23,14 @@ class UserController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+    def login_params
+      params.deep_dup().require(:user)
+        .extract!(:email, :password, :password_confirmation, :user_type)
+        .permit(:email, :password, :password_confirmation, :user_type)
+    end
+    def additional_params
+      params.deep_dup().require(:user)
+        .extract!(:name)
+        .permit(:name).merge(user_id: @user.id)
     end
 end

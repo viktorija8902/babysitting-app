@@ -3,16 +3,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    babysitter = Babysitter.find_by(email: params[:session][:email].downcase)
-    family = Family.find_by(email: params[:session][:email].downcase)
-    if babysitter && babysitter.authenticate(params[:session][:password])
-      log_in(babysitter, 'babysitter')
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.user_type == '1' && user.authenticate(params[:session][:password])
+      log_in(user)
     	redirect_to '/babysitter-profile'
-    elsif family && family.authenticate(params[:session][:password])
-    	log_in(family, 'family')
+    elsif user && user.user_type == '2' && user.authenticate(params[:session][:password])
+    	log_in(user)
     	redirect_to '/family-profile'
     else
-      # Create an error message.
+      #TODO Create an error message.
       render 'new'
     end
   end

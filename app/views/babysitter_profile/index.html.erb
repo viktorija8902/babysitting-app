@@ -1,5 +1,5 @@
 <% if logged_in? %>
-	<h1>Hello babysitter <%= current_user.name %>!</h1>
+	<h1>Hello babysitter <%= @babysitter.name %>!</h1>
 	<%= link_to "Log out", logout_path, method: :delete %>
 
 	<div>When can you babysit?<div>
