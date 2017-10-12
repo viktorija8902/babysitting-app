@@ -1,12 +1,6 @@
 class Family < ApplicationRecord
-	before_save { self.email = email.downcase }
-	
-	validates :name, presence: true
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates :email, presence: true, 
-    					format: { with: VALID_EMAIL_REGEX },
-    					uniqueness: { case_sensitive: false }
+	belongs_to :user
 
- 	has_secure_password
- 	validates :password, presence: true
+	validates :name, presence: true
+	validates :user_id, presence: true
 end
